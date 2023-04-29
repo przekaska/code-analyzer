@@ -1,3 +1,4 @@
+{
 #ifndef _AN_ANGRYJUMPER_C
 #define _AN_ANGRYJUMPER_C
 
@@ -79,3 +80,4 @@ int main(){
 
 #endif
 
+}
