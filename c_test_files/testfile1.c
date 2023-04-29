@@ -1,10 +1,11 @@
-{
+
 #ifndef _AN_PLAYER_C
 #define _AN_PLAYER_C
 
 #include <curses.h>
 
 #include "window.c"
+
 
 #define INIT_Y 20
 #define INIT_X 10
@@ -53,4 +54,3 @@ void draw_player(struct Player *player){
 
 
 #endif
-}

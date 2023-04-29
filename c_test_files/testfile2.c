@@ -1,6 +1,12 @@
 #include <stdio.h>
 
+
 #define SOMETHING 1
+
+void nth(){
+    if (SOMETHING)
+}
+
 
 int global = 1;
 

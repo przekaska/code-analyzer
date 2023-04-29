@@ -1,6 +1,5 @@
-{
-#ifndef _AN_ANGRYJUMPER_C
-#define _AN_ANGRYJUMPER_C
+#ifndef _AN_ANGRYJUMPER_C 
+#define _AN_ANGRYJUMPER_C 
 
 #include <curses.h>
 #include <stdlib.h>
@@ -80,4 +79,3 @@ int main(){
 
 #endif
 
-}

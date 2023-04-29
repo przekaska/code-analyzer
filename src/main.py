@@ -63,15 +63,38 @@ class Scope:        # consider changing class to list
 # for scope in scopes:
     # print("SCOPE: ", scope.name, scope.type, text[scope.start], text[scope.stop], "\n\n", scope.code, "\n\n")   
 }
-f = open("c_test_files/testfile3.c")
+f = open("c_test_files/testfile1.c")
 
 text = f.read()
-
+text = text.replace("(", " ( ")
+text = text.replace(")", " ) ")
+text = text.replace("[", " [ ")
+text = text.replace("]", " ] ")
+text = text.replace("{", " { ")
+text = text.replace("}", " } ")
+text = text.replace(",", " , ") 
+text = text.replace("*", " * ")
+text = text.replace("+", " + ")
+text = text.replace("-", " - ")
+text = text.replace("/", " / ")
+text = text.replace("%", " % ")
+text = text.replace("=", " = ")
+text = text.replace(">", " > ")
+text = text.replace("<", " < ")
+text = text.replace(";", " ; ")
+text = text.replace("\"", " \" ")
+text = text.replace("'", " ' ")
+text = text.replace("!", " ! ")
+text = text.replace("&", " & ")
+text = text.replace("\n", " \n ")
+text = text.split(" ")
+text = list(filter(str, text))
 print(text)
 
 
-
+preprocess(text, "c_test_files/outfile.c")
 
 enum = enumerate(text)
+print(defined)
 
-f.close()   
+f.close()    
