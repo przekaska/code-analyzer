@@ -29,7 +29,7 @@ def create_scope(text, enumerator, type, name, start):
         if word in types:
             if text[index + 2] == "(":
                 create_scope(text, enumerator, text[index], text[index + 1], index)
-        if word in special_types:
+        elif word in special_types:
             word = create_scope(text, enumerator, text[index], text[index], index)
 
         if word == '{' and not parentheses_level:
