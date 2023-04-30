@@ -25,7 +25,7 @@ def preprocess_text(text, outfile, write_mode=True, index=0):
     while index < len(text):
         if(text[index] == "#endif"):
             return index
-        
+
         if write_mode:
             try:
                 outfile.write(" " + defined[text[index]])
@@ -37,6 +37,8 @@ def preprocess_text(text, outfile, write_mode=True, index=0):
                     index = preprocess_text(text, outfile, ifdef(text[index + 1]), index + 2)
                 elif(text[index] == "#ifndef"):
                     index = preprocess_text(text, outfile, ifndef(text[index + 1]), index + 2)
+                elif(text[index] == "#include"):
+                    index += 3          # FINISH INCLUDE!!!!!
                 else:
                     outfile.write(" " + text[index])
         index += 1
@@ -44,5 +46,6 @@ def preprocess_text(text, outfile, write_mode=True, index=0):
 def preprocess(text, file_name):
     outfile = open(file_name, "w")
     preprocess_text(text, outfile)
+    xd = 7
     outfile.close()  
 

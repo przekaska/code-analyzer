@@ -1,9 +1,8 @@
-
 #ifndef _AN_PLAYER_C
 #define _AN_PLAYER_C
 
 #include <curses.h>
-
+#include <stdlib.h>
 #include "window.c"
 
 
