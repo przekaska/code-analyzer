@@ -1,3 +1,5 @@
+from simpletree import *
+
 scopes = []
 
 types = ["int", "char", "float", "double", "void"]
@@ -13,12 +15,14 @@ class Scope:        # consider changing class to list
         self.code = [] 
 
 def init_scopes(text, type, name, start):
-    create_scope(text, enumerate(text), type, name, start)
+    scope_tree = create_scope(text, enumerate(text), type, name, start)
+    return scope_tree
 
 
 def create_scope(text, enumerator, type, name, start):
     current_scope = Scope(name, type, start)
     scopes.append(current_scope)
+    current_node = Node(current_scope, name)
     end_word = ";"
     parentheses_level = 0
 
@@ -28,13 +32,17 @@ def create_scope(text, enumerator, type, name, start):
     
         if word in types:
             if text[index + 2] == "(":
-                create_scope(text, enumerator, text[index], text[index + 1], index)
+                current_node.addchild(create_scope(text, enumerator, text[index], text[index + 1], index))
         elif word in special_types:
-            word = create_scope(text, enumerator, text[index], text[index], index)
+            current_node.addchild(create_scope(text, enumerator, text[index], text[index], index))
+            if end_word == ";":
+                word = ";"
 
         if word == '{' and not parentheses_level:
             end_word = "}"
         if word == end_word and not parentheses_level:
             current_scope.stop = index
-            return ";"
+            return current_node
         
+    current_scope.stop = index
+    return current_node

@@ -1,12 +1,19 @@
 class Node:
-    def __init__(self, object, name=None, parent=None):
-        self.value = object
+    def __init__(self, value, name=None):
+        self.value = value
         self.name = name
-        self.parent = parent
+        self.parent = None
         self.children = []
 
-    def addchild(self, object):
-        child = Node(object, self)
+    def addchild(self, child):
+        child.parent = self
         self.children.append(child)
-        return child
+    
+    def setparent(self, parent):
+        self.parent = parent
+        parent.children.append(self)
+
+
+
+
 
