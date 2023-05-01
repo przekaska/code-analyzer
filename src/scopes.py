@@ -5,13 +5,13 @@ scopes = []
 types = ["int", "char", "float", "double", "void"]
 special_types = ["for", "while", "if"]
 
-class Scope:        # consider changing class to list
+class Scope(Node):
     def __init__(self, name, type, start, stop = False):
-        # self.id = id
+        super().__init__()
         self.name = name
         self.type = type
         self.start = start
-        self.stop = stop
+        self.stop = stop    
         self.code = [] 
 
 def init_scopes(text, type, name, start):
@@ -21,8 +21,6 @@ def init_scopes(text, type, name, start):
 
 def create_scope(text, enumerator, type, name, start):
     current_scope = Scope(name, type, start)
-    scopes.append(current_scope)
-    current_node = Node(current_scope, name)
     end_word = ";"
     parentheses_level = 0
 
@@ -32,9 +30,9 @@ def create_scope(text, enumerator, type, name, start):
     
         if word in types:
             if text[index + 2] == "(":
-                current_node.addchild(create_scope(text, enumerator, text[index], text[index + 1], index))
+                current_scope.addchild(create_scope(text, enumerator, text[index], text[index + 1], index))
         elif word in special_types:
-            current_node.addchild(create_scope(text, enumerator, text[index], text[index], index))
+            current_scope.addchild(create_scope(text, enumerator, text[index], text[index], index))
             if end_word == ";":
                 word = ";"
 
@@ -42,7 +40,7 @@ def create_scope(text, enumerator, type, name, start):
             end_word = "}"
         if word == end_word and not parentheses_level:
             current_scope.stop = index
-            return current_node
+            return current_scope
         
     current_scope.stop = index
-    return current_node
+    return current_scope
