@@ -46,6 +46,5 @@ def preprocess_text(text, outfile, write_mode=True, index=0):
 def preprocess(text, file_name):
     outfile = open(file_name, "w")
     preprocess_text(text, outfile)
-    xd = 7
     outfile.close()  
 
