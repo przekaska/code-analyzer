@@ -36,7 +36,7 @@ text = f.read()
 text = text.split()
 # print(text)
 
-tree = init_scopes(text, "*GLOBAL*", "*GLOBAL*", 0)
+tree = init_scopes(text, "*GLOBAL*", "*GLOBAL*")
 
 for scope in scopes:
     print(scope.name, "\n\n", scope.code, "\n\n")
