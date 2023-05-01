@@ -10,7 +10,7 @@ class Scope(Node):
         super().__init__()
         self.name = name
         self.type = type
-        self.start = start
+        self.start = start  # maybe delete start and stop 
         self.stop = stop    
         self.code = [] 
 
@@ -21,18 +21,20 @@ def init_scopes(text, type, name, start):
 
 def create_scope(text, enumerator, type, name, start):
     current_scope = Scope(name, type, start)
+    scopes.append(current_scope)
     end_word = ";"
     parentheses_level = 0
 
     for index, word in enumerator:
-        current_scope.code.append(word)
         parentheses_level += (word == "(") - (word == ")")
     
         if word in types:
             if text[index + 2] == "(":
-                current_scope.addchild(create_scope(text, enumerator, text[index], text[index + 1], index))
+                current_scope.addchild(create_scope(text, enumerator, text[index], text[index + 1], index)) 
+                text[index] = "#"
         elif word in special_types:
             current_scope.addchild(create_scope(text, enumerator, text[index], text[index], index))
+            text[index] = "#"
             if end_word == ";":
                 word = ";"
 
@@ -41,6 +43,8 @@ def create_scope(text, enumerator, type, name, start):
         if word == end_word and not parentheses_level:
             current_scope.stop = index
             return current_scope
+        
+        current_scope.code.append(text[index])
         
     current_scope.stop = index
     return current_scope

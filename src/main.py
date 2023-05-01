@@ -38,8 +38,8 @@ text = text.split()
 
 tree = init_scopes(text, "*GLOBAL*", "*GLOBAL*", 0)
 
-for scope in tree:
-    print(scope.name)
+for scope in scopes:
+    print(scope.name, "\n\n", scope.code, "\n\n")
 
 print(defined)
 

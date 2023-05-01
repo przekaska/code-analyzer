@@ -5,6 +5,7 @@
 
 void nth(){
     if (SOMETHING)
+        dosth();
 }
 
 
