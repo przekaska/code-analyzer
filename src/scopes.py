@@ -22,6 +22,8 @@ def create_scope(text, enumerator, type, name):
     scopes.append(current_scope)
     end_word = ";"
     parentheses_level = 0
+    if name == "*GLOBAL*":  # temp solution
+        end_word = ""
 
     for index, word in enumerator:
         parentheses_level += (word == "(") - (word == ")")

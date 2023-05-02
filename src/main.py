@@ -3,7 +3,7 @@ from scopes import *
 
 f = open("c_test_files/testfile3.c")
 
-text = f.read()
+text = f.read()                     # temp solution
 text = text.replace("(", " ( ")
 text = text.replace(")", " ) ")
 text = text.replace("[", " [ ")

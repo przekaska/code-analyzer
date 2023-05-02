@@ -26,7 +26,7 @@ def preprocess_text(text, outfile, write_mode=True, index=0):
         if(text[index] == "#endif"):
             return index
 
-        if write_mode:
+        if write_mode:  # temp solution
             try:
                 outfile.write(" " + defined[text[index]])
             except:
